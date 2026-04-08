@@ -1,0 +1,973 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<title>Consulta de Declaração</title>
+
+<link href="https://cdn.jsdelivr.net/npm/daisyui@4.12.10/dist/full.min.css" rel="stylesheet">
+<script src="https://cdn.tailwindcss.com"></script>
+
+<style>
+
+body{
+background:#f5f7fb;
+font-family: system-ui;
+}
+
+.titulo{
+font-size:40px;
+font-weight:bold;
+color:#1f2937;
+}
+
+.btn-roxo{
+background:#6b46ff;
+color:white;
+}
+
+.btn-roxo:hover{
+background:#5538cc;
+}
+
+</style>
+
+</head>
+
+<body class="flex items-center justify-center h-screen">
+
+<div class="text-center max-w-lg">
+
+<h1 class="titulo">Consulta de Declaração</h1>
+
+<p class="text-gray-500 mt-2">
+Digite seu CPF para acessar sua declaração
+</p>
+
+<div class="bg-white shadow-xl rounded-xl p-8 mt-6">
+
+<input
+type="text"
+id="cpf"
+placeholder="000.000.000-00"
+maxlength="14"
+class="input input-bordered w-full text-center text-lg"
+/>
+
+<button onclick="buscarCPF()" class="btn btn-roxo w-full mt-4">
+Consultar
+</button>
+
+<div id="resultado" class="mt-6"></div>
+
+</div>
+
+</div>
+
+<script>
+
+// máscara de CPF
+const cpfInput = document.getElementById("cpf")
+
+cpfInput.addEventListener("input", function(){
+
+let value = cpfInput.value.replace(/\D/g,"")
+
+value = value.replace(/(\d{3})(\d)/,"$1.$2")
+value = value.replace(/(\d{3})(\d)/,"$1.$2")
+value = value.replace(/(\d{3})(\d{1,2})$/,"$1-$2")
+
+cpfInput.value = value
+
+})
+
+// função de busca
+function buscarCPF(){
+
+let cpf = document.getElementById("cpf").value.replace(/\D/g,"")
+
+let aluno = alunos.find(a => a.CPF.replace(/\D/g,"") === cpf)
+
+let resultado = document.getElementById("resultado")
+
+if(aluno){
+
+resultado.innerHTML = `
+<a href="${aluno.link}" target="_blank" class="btn btn-success w-full">
+Abrir minha declaração
+</a>
+`
+
+}else{
+
+resultado.innerHTML = `
+<p class="text-red-500 font-semibold">
+CPF não encontrado
+</p>
+`
+
+}
+
+}
+
+</script>
+
+
+<!-- JSON DOS ALUNOS -->
+
+<script>
+
+const alunos = [
+  {
+    "CPF": "166.758.894-00",
+    "link": "https://drive.google.com/file/d/1-lID3Sx31EuTe-tcfwpNIPJ9HchPiFT1/view?usp=drivesdk"
+  },
+  {
+    "CPF": "171.471.264-83",
+    "link": "https://drive.google.com/file/d/1ZFXkg1mH7HO6ryzgoNY9xH6NKspIrsAg/view?usp=drivesdk"
+  },
+  {
+    "CPF": "131.481.474-56",
+    "link": "https://drive.google.com/file/d/1eOVn7_r9VaeX1fFvYougJoeig1Kgsuyb/view?usp=drivesdk"
+  },
+  {
+    "CPF": "110.187.724-30",
+    "link": "https://drive.google.com/file/d/1DTlkeCxCXueTAybotrHjN2wax0TRMVLh/view?usp=drivesdk"
+  },
+  {
+    "CPF": "720.193.544-54",
+    "link": "https://drive.google.com/file/d/124TxHmU8VOQmwQIXT2dUwbIuZ-MBegKX/view?usp=drivesdk"
+  },
+  {
+    "CPF": "147.881.224-99",
+    "link": "https://drive.google.com/file/d/1enCNUcv7YEgNWIbGGmcv941ETanG8gvM/view?usp=drivesdk"
+  },
+  {
+    "CPF": "168.202.764-35",
+    "link": "https://drive.google.com/file/d/1H8FpNDMqeqokjyEr2RVAhTqPaHiAsfOE/view?usp=drivesdk"
+  },
+  {
+    "CPF": "159.717.034-80",
+    "link": "https://drive.google.com/file/d/1QDDDs21f3hGKoWBPDBm9XYQaRyFZUYaJ/view?usp=drivesdk"
+  },
+  {
+    "CPF": "134.393.484-23",
+    "link": "https://drive.google.com/file/d/1iSoOP8hXrRXv5IyVGaye_SmSEpQDA8J1/view?usp=drivesdk"
+  },
+  {
+    "CPF": "149.110.734-03",
+    "link": "https://drive.google.com/file/d/1umUfRuNCdtnfarEVPugM9yWrR8_fxW5v/view?usp=drivesdk"
+  },
+  {
+    "CPF": "128.314.434-40",
+    "link": "https://drive.google.com/file/d/1JLIodnhqL6gZRlAOqQQ55E4WjBeJxyZo/view?usp=drivesdk"
+  },
+  {
+    "CPF": "163.284.474-50",
+    "link": "https://drive.google.com/file/d/1tZMHASBJcHDXgM9X8bq4hLnTdozs7hFh/view?usp=drivesdk"
+  },
+  {
+    "CPF": "700.105.634-07",
+    "link": "https://drive.google.com/file/d/1mTKdrFE225d2ASk3w8IHPP322DFbmRqz/view?usp=drivesdk"
+  },
+  {
+    "CPF": "182.566.424-24",
+    "link": "https://drive.google.com/file/d/1DnUgLeiPB9dQR3V_3hlMbAD_bH_GoQOM/view?usp=drivesdk"
+  },
+  {
+    "CPF": "170.373.844-61",
+    "link": "https://drive.google.com/file/d/1XgaQ2sqHVMhtzUb8vHiKecoeXw6naOVc/view?usp=drivesdk"
+  },
+  {
+    "CPF": "173.537.194-78",
+    "link": "https://drive.google.com/file/d/1sBpF1AhIpfWcJ3XIcTVgucHukE7RXHW8/view?usp=drivesdk"
+  },
+  {
+    "CPF": "465.675.498-66",
+    "link": "https://drive.google.com/file/d/1XpbtXN8UTm86rUSvLhpI6_1qZfhf8oeF/view?usp=drivesdk"
+  },
+  {
+    "CPF": "720.750.984-76",
+    "link": "https://drive.google.com/file/d/1p7b3njbiIZCi1SSUzp1oxdmbr2E3757n/view?usp=drivesdk"
+  },
+  {
+    "CPF": "165.166.314-92",
+    "link": "https://drive.google.com/file/d/1LBOt6VJ4oZs7SOMwljhCcp798Vuihs92/view?usp=drivesdk"
+  },
+  {
+    "CPF": "168.181.594-00",
+    "link": "https://drive.google.com/file/d/15Cv8xaLOa8QLiqGou7W0k8XAvz7m4Zfl/view?usp=drivesdk"
+  },
+  {
+    "CPF": "158.181.774-67",
+    "link": "https://drive.google.com/file/d/15QKqKw8agPXBYoJ0pEe-R247ebce3XJv/view?usp=drivesdk"
+  },
+  {
+    "CPF": "106.359.324-74",
+    "link": "https://drive.google.com/file/d/15aUS5FQyv0qL_2NC7oFJPTsfTrZUvbXg/view?usp=drivesdk"
+  },
+  {
+    "CPF": "149.162.397-76",
+    "link": "https://drive.google.com/file/d/1k-OB7y424i1yrVJLpbO_0u82O7Kud1CU/view?usp=drivesdk"
+  },
+  {
+    "CPF": "178.464.674-17",
+    "link": "https://drive.google.com/file/d/1dXYAlfXdTeyk0IIzmjyadkH4UDww87GQ/view?usp=drivesdk"
+  },
+  {
+    "CPF": "156.979.414-63",
+    "link": "https://drive.google.com/file/d/1srLpFUZ7CfVOtsyG3d6hxbQRjoC1UTjL/view?usp=drivesdk"
+  },
+  {
+    "CPF": "715.121.074-41",
+    "link": "https://drive.google.com/file/d/1LwM01wV9qi1JFLzt8Jsfdd-fRo0cMzJP/view?usp=drivesdk"
+  },
+  {
+    "CPF": "163.299.864-52",
+    "link": "https://drive.google.com/file/d/1PTpqFY7KozgG34SFV3JbS8mx23SKQJoK/view?usp=drivesdk"
+  },
+  {
+    "CPF": "151.612.094-96",
+    "link": "https://drive.google.com/file/d/1NipGko5QDv_AzeLn0IgcbUjy5gkhg2DU/view?usp=drivesdk"
+  },
+  {
+    "CPF": "711.535.184-81",
+    "link": "https://drive.google.com/file/d/1o1V2Iwfz9-dJPbiIRIHxobL9nLIiFYKa/view?usp=drivesdk"
+  },
+  {
+    "CPF": "705.880.434-60",
+    "link": "https://drive.google.com/file/d/1kfOgJoxBGWfutV-PBwssRwXwtcBjhd2L/view?usp=drivesdk"
+  },
+  {
+    "CPF": "713.039.154-56",
+    "link": "https://drive.google.com/file/d/1HTz048JGNS2CHrZwBXwCfRTCr3mbYrqj/view?usp=drivesdk"
+  },
+  {
+    "CPF": "168.997.484-28",
+    "link": "https://drive.google.com/file/d/1w307RIX-HIApR7Kk68P6tEpIFBHzfaSt/view?usp=drivesdk"
+  },
+  {
+    "CPF": "172.708.384-96",
+    "link": "https://drive.google.com/file/d/1KUSz9cSnm-e_BSFURA7kLb5n3iXW7sj1/view?usp=drivesdk"
+  },
+  {
+    "CPF": "159.041.414-40",
+    "link": "https://drive.google.com/file/d/1Phuj8M5lO-EvlvUcPCFlaQJeHU3oOByI/view?usp=drivesdk"
+  },
+  {
+    "CPF": "159.485.184-00",
+    "link": "https://drive.google.com/file/d/1T31NULa_h8GtwVSlqYW5mgAzEwm0r1FA/view?usp=drivesdk"
+  },
+  {
+    "CPF": "112.001.014-48",
+    "link": "https://drive.google.com/file/d/1wAIRbkJK0cc8pVR35AR6-JrWGtnjhbYt/view?usp=drivesdk"
+  },
+  {
+    "CPF": "720.976.324-40",
+    "link": "https://drive.google.com/file/d/19tj4OfMn9p3-GCkfmJokbjJG6Q9g71UL/view?usp=drivesdk"
+  },
+  {
+    "CPF": "179.668.964-55",
+    "link": "https://drive.google.com/file/d/1alTsP2wqHRSOAT-tXWV9YG_IetTf8CMN/view?usp=drivesdk"
+  },
+  {
+    "CPF": "165.233.764-43",
+    "link": "https://drive.google.com/file/d/1Zna7MmY4SfBNc3r4U_SS4lVRHITvoA_0/view?usp=drivesdk"
+  },
+  {
+    "CPF": "104.042.844-42",
+    "link": "https://drive.google.com/file/d/1QeDVP9MqXPinns2qoTYYJ0f5HVdCR6K9/view?usp=drivesdk"
+  },
+  {
+    "CPF": "156.472.814-51",
+    "link": "https://drive.google.com/file/d/16BzCcCiJeTIYGP9eWagtVu0vM9EnEuph/view?usp=drivesdk"
+  },
+  {
+    "CPF": "179.261.184-60",
+    "link": "https://drive.google.com/file/d/1kFHsZ28ZQbZHM9xiFdK1t2PzntgRb0Tl/view?usp=drivesdk"
+  },
+  {
+    "CPF": "163.725.584-59",
+    "link": "https://drive.google.com/file/d/1VpSwBvTxIYssKq-N65QfwN8UApCWnX5E/view?usp=drivesdk"
+  },
+  {
+    "CPF": "165.811.684-40",
+    "link": "https://drive.google.com/file/d/13GalPWFgzG9q9jY4cQ1ua0UejVIY2fCr/view?usp=drivesdk"
+  },
+  {
+    "CPF": "119.590.154-27",
+    "link": "https://drive.google.com/file/d/1ZDeg9DkrbGinBS4fnoI04kjvq7paTzUz/view?usp=drivesdk"
+  },
+  {
+    "CPF": "169.982.054-65",
+    "link": "https://drive.google.com/file/d/1kqbRP98NFr1vGuZ2XGBl7BNFLb4PFg5D/view?usp=drivesdk"
+  },
+  {
+    "CPF": "165.411.414-60",
+    "link": "https://drive.google.com/file/d/1wP5AdRdPn_GDsEIJikz4MHMIMC12FvJW/view?usp=drivesdk"
+  },
+  {
+    "CPF": "716.820.044-57",
+    "link": "https://drive.google.com/file/d/1eT0KxfT8RrprWt3Xvh6jHQT8wt60-sNH/view?usp=drivesdk"
+  },
+  {
+    "CPF": "138.457.044-62",
+    "link": "https://drive.google.com/file/d/1mozhPFP-V2Yk8IBzDAyNpxx9haH98wEz/view?usp=drivesdk"
+  },
+  {
+    "CPF": "121.532.014-03",
+    "link": "https://drive.google.com/file/d/153sKTvohVp9Kg24yoGzn7ID_quRwXTIA/view?usp=drivesdk"
+  },
+  {
+    "CPF": "713.808.104-93",
+    "link": "https://drive.google.com/file/d/1BunS7Y57P_S4V_zWfbbtbxLUsw-VuT88/view?usp=drivesdk"
+  },
+  {
+    "CPF": "172.584.074-05",
+    "link": "https://drive.google.com/file/d/1cT96_6wbhMlE_4zf8nxthA8xgm_dxVxn/view?usp=drivesdk"
+  },
+  {
+    "CPF": "162.851.064-10",
+    "link": "https://drive.google.com/file/d/1ncXwtOHDFbJKxamS0TZ-WX3K2c1jOMBF/view?usp=drivesdk"
+  },
+  {
+    "CPF": "176.982.904-09",
+    "link": "https://drive.google.com/file/d/1LsoPfEyV3x8xlZO8lrTnWE2flONAE9GJ/view?usp=drivesdk"
+  },
+  {
+    "CPF": "169.537.044-97",
+    "link": "https://drive.google.com/file/d/1qMDqWi60MeL0WlZHESilXPkTJDMuuu5G/view?usp=drivesdk"
+  },
+  {
+    "CPF": "145.092.034-97",
+    "link": "https://drive.google.com/file/d/1ccxR8UNk4-zRGrOOS48q0zFFzSh3ZgLw/view?usp=drivesdk"
+  },
+  {
+    "CPF": "156.848.664-25",
+    "link": "https://drive.google.com/file/d/1kLnrO8FT6v244Hu0Ec70YVfOSaQle86A/view?usp=drivesdk"
+  },
+  {
+    "CPF": "153.636.624-26",
+    "link": "https://drive.google.com/file/d/1Aneut1_irdua9q1GwUkcJ8h6Abh0mLba/view?usp=drivesdk"
+  },
+  {
+    "CPF": "717.553.694-17",
+    "link": "https://drive.google.com/file/d/1wG7SYjjz3Y1GEcduMDpT6fTw0WyV4_EF/view?usp=drivesdk"
+  },
+  {
+    "CPF": "165.955.124-24",
+    "link": "https://drive.google.com/file/d/1Rvf3ItGc5o1Xpz_NbORB3jHRc-zpom1x/view?usp=drivesdk"
+  },
+  {
+    "CPF": "544.054.178-06",
+    "link": "https://drive.google.com/file/d/166t2c0Z6U5WXN3v0bEwyCXs5_G489lh7/view?usp=drivesdk"
+  },
+  {
+    "CPF": "152.790.424-55",
+    "link": "https://drive.google.com/file/d/1DCBpKU17HTwbsgnlj4uVHlvHDr9QdloY/view?usp=drivesdk"
+  },
+  {
+    "CPF": "157.548.654-73",
+    "link": "https://drive.google.com/file/d/1UpSWacQlVnhh2pGNLr_lOhXlfOpyDG5J/view?usp=drivesdk"
+  },
+  {
+    "CPF": "064.500.187-20",
+    "link": "https://drive.google.com/file/d/1pkSCPunpxltIUizXBJDdy3nfeDp6PUvP/view?usp=drivesdk"
+  },
+  {
+    "CPF": "720.199.434-41",
+    "link": "https://drive.google.com/file/d/19xGmM-XhrQ1em59unhvcY4YzGy0FwoZX/view?usp=drivesdk"
+  },
+  {
+    "CPF": "157.966.384-24",
+    "link": "https://drive.google.com/file/d/19n15S7ojC5LcB8VgYzY4Mg5dBH8x2Xp3/view?usp=drivesdk"
+  },
+  {
+    "CPF": "102.817.244-31",
+    "link": "https://drive.google.com/file/d/1uomWbQWDhqf7S8pC7fXKT_4VGfoeJ1H_/view?usp=drivesdk"
+  },
+  {
+    "CPF": "144.946.054-25",
+    "link": "https://drive.google.com/file/d/1zDV6qo30S7SMt7Ygofo_8ItVEUIBekV4/view?usp=drivesdk"
+  },
+  {
+    "CPF": "701.267.094-08",
+    "link": "https://drive.google.com/file/d/1AAwKBkkWtzKl8XsXSxuWIbfnvf85dYuW/view?usp=drivesdk"
+  },
+  {
+    "CPF": "178.178.474-44",
+    "link": "https://drive.google.com/file/d/1Xn_VcgXf2S7RTotUtyzeeUXJ2BrH1Hhf/view?usp=drivesdk"
+  },
+  {
+    "CPF": "714.003.014-67",
+    "link": "https://drive.google.com/file/d/19X_Q24MncZUX6UVhczUkaSHClWa9QlYo/view?usp=drivesdk"
+  },
+  {
+    "CPF": "157.227.874-93",
+    "link": "https://drive.google.com/file/d/1ViNAAMCVhW1hw_VcqSPWgHNeHpgVM31m/view?usp=drivesdk"
+  },
+  {
+    "CPF": "146.798.954-11",
+    "link": "https://drive.google.com/file/d/1PBzeYcx_YOlDQdMUazcWjCMhxHnOOiGj/view?usp=drivesdk"
+  },
+  {
+    "CPF": "159.879.184-21",
+    "link": "https://drive.google.com/file/d/1NnQ469STXUbnBhM9-WKcP8UKG4DoUOEv/view?usp=drivesdk"
+  },
+  {
+    "CPF": "531.343.538-81",
+    "link": "https://drive.google.com/file/d/1YFqisZKJgSEU-zH8CXIAgQE-7zufCm1H/view?usp=drivesdk"
+  },
+  {
+    "CPF": "718.134.924-41",
+    "link": "https://drive.google.com/file/d/1YOInP78fHNrOKzuLIsfp0grQ6TCwNUqF/view?usp=drivesdk"
+  },
+  {
+    "CPF": "173.281.294-25",
+    "link": "https://drive.google.com/file/d/1aADCvpbV_Oydsf_SBPHz7PizhUefjVVU/view?usp=drivesdk"
+  },
+  {
+    "CPF": "718.871.774-50",
+    "link": "https://drive.google.com/file/d/1Rh9r_38klIKPy8fLYvv4M7CBxpEH-I9i/view?usp=drivesdk"
+  },
+  {
+    "CPF": "186.408.304-28",
+    "link": "https://drive.google.com/file/d/1YMWhtSsFwYxsRCXakDoNdHkXUUTe4M2i/view?usp=drivesdk"
+  },
+  {
+    "CPF": "100.430.254-12",
+    "link": "https://drive.google.com/file/d/1D0HFGgHJi6omSd9qqXzS9K_5sM3FtN6M/view?usp=drivesdk"
+  },
+  {
+    "CPF": "152.141.457-21",
+    "link": "https://drive.google.com/file/d/1kGJwyzB9O06gCGd9RxKeuIoAHl9Z-XMT/view?usp=drivesdk"
+  },
+  {
+    "CPF": "703.153.254-02",
+    "link": "https://drive.google.com/file/d/1pdPA4K2_XCfJFukbKY7uVhzLzyL2S58X/view?usp=drivesdk"
+  },
+  {
+    "CPF": "105.966.004-02",
+    "link": "https://drive.google.com/file/d/1-UkRcaZPP0hyLwK3eFE1L6kKD2yPhNRF/view?usp=drivesdk"
+  },
+  {
+    "CPF": "178.591.634-38",
+    "link": "https://drive.google.com/file/d/1MetKuwgX2cvX9-IZxvbRnwSmGWD2-1j7/view?usp=drivesdk"
+  },
+  {
+    "CPF": "170.816.234-84",
+    "link": "https://drive.google.com/file/d/1KbUisb-qU2Rt4OQVZIV23cs4Yqa4g9r0/view?usp=drivesdk"
+  },
+  {
+    "CPF": "142.076.634-10",
+    "link": "https://drive.google.com/file/d/1CMVksdRYwVNOxdKMUIcs_pfvYu3DvjUq/view?usp=drivesdk"
+  },
+  {
+    "CPF": "706.777.164-19",
+    "link": "https://drive.google.com/file/d/1DWJg6-0uHjbXA-ai2Cc9djgwHLLau-uz/view?usp=drivesdk"
+  },
+  {
+    "CPF": "178.752.364-01",
+    "link": "https://drive.google.com/file/d/18CWotg993y5OGvCVxwt5lmD3--BM8xPr/view?usp=drivesdk"
+  },
+  {
+    "CPF": "615.629.723-59",
+    "link": "https://drive.google.com/file/d/1IoIZy3WqFgaaPdctfhKxSeFrGF5QLn5o/view?usp=drivesdk"
+  },
+  {
+    "CPF": "708.018.044-93",
+    "link": "https://drive.google.com/file/d/1f3phNeDMhWUilC6tS-WM_RhpaLY6KbE2/view?usp=drivesdk"
+  },
+  {
+    "CPF": "168.727.614-58",
+    "link": "https://drive.google.com/file/d/1kFsinWcxp9ieKBUiw-p3_n6HgoNx3xGV/view?usp=drivesdk"
+  },
+  {
+    "CPF": "171.432.987-94",
+    "link": "https://drive.google.com/file/d/1VOGyj5MdmHjnm4v7bgwaXSV5pMGCDEz6/view?usp=drivesdk"
+  },
+  {
+    "CPF": "221.753.497-13",
+    "link": "https://drive.google.com/file/d/1GTOlSW1AYqSrlRIWGE547BjLDr09YLsu/view?usp=drivesdk"
+  },
+  {
+    "CPF": "103.764.174-47",
+    "link": "https://drive.google.com/file/d/1rIoVid30MtVwiQFldCRvpX7xlA0BedM3/view?usp=drivesdk"
+  },
+  {
+    "CPF": "174.868.504-00",
+    "link": "https://drive.google.com/file/d/1ub6PoDFykYTC_gfIh6_CdLoJIjF8zjAS/view?usp=drivesdk"
+  },
+  {
+    "CPF": "017.307.344-13",
+    "link": "https://drive.google.com/file/d/1Ei4C3nxtfn2qaqKvbMCOuq21m2v70diy/view?usp=drivesdk"
+  },
+  {
+    "CPF": "148.326.204-95",
+    "link": "https://drive.google.com/file/d/1zpVIhaGwbz5Wg34LTMmKvXBbANXVkkVA/view?usp=drivesdk"
+  },
+  {
+    "CPF": "717.516.684-28",
+    "link": "https://drive.google.com/file/d/1Vn0hvvh362ACr3-P6odAEATrx49vbh6w/view?usp=drivesdk"
+  },
+  {
+    "CPF": "707.376.294-28",
+    "link": "https://drive.google.com/file/d/1zZko6ON4f0qIooHfu0uipsM0ryUCkvi6/view?usp=drivesdk"
+  },
+  {
+    "CPF": "709.096.894-40",
+    "link": "https://drive.google.com/file/d/1Cmc6UzXiTqmbwh_k_2CUWUnvFs4ZPNqe/view?usp=drivesdk"
+  },
+  {
+    "CPF": "708.245.104-02",
+    "link": "https://drive.google.com/file/d/1utNVSFbB2nYWQKI-m4wF3UDCyJs8MiKr/view?usp=drivesdk"
+  },
+  {
+    "CPF": "176.743.324-70",
+    "link": "https://drive.google.com/file/d/1ZVoDsHUPVE6ihVi6_6jlioMqqgK_zqhW/view?usp=drivesdk"
+  },
+  {
+    "CPF": "180.888.004-80",
+    "link": "https://drive.google.com/file/d/1Srmk8riR3iB2MwNUfjA3bZcxmFo2HXTc/view?usp=drivesdk"
+  },
+  {
+    "CPF": "100.140.424-60",
+    "link": "https://drive.google.com/file/d/1Q_8nvGobG42x63LFG0H5NNGv4PS8MK0g/view?usp=drivesdk"
+  },
+  {
+    "CPF": "179.303.974-75",
+    "link": "https://drive.google.com/file/d/1-x_YkaVZESDS5puwNT00rLpABValTLmp/view?usp=drivesdk"
+  },
+  {
+    "CPF": "178.072.914-60",
+    "link": "https://drive.google.com/file/d/1PxZLxFzDAj1UdZyLC4TIiMJw3AtRwbHy/view?usp=drivesdk"
+  },
+  {
+    "CPF": "717.400.764-35",
+    "link": "https://drive.google.com/file/d/1byOGWPDYP_yADIPoNHmDuDFOVTXsgCGW/view?usp=drivesdk"
+  },
+  {
+    "CPF": "709.189.834-60",
+    "link": "https://drive.google.com/file/d/1TZR8oq0nPU4GWfiMvtMZwqzUXDzqUOiY/view?usp=drivesdk"
+  },
+  {
+    "CPF": "168.584.034-50",
+    "link": "https://drive.google.com/file/d/1slEJKaAaTazhZmOTVR6TX2TsmlcyN8nS/view?usp=drivesdk"
+  },
+  {
+    "CPF": "177.512.734-61",
+    "link": "https://drive.google.com/file/d/1CPKQwM0eR4_g2Huifbul2TU942ojFPAl/view?usp=drivesdk"
+  },
+  {
+    "CPF": "178.223.294-05",
+    "link": "https://drive.google.com/file/d/1XRECAiQQF0U1dvcvZhvkpwd1NFESgD-L/view?usp=drivesdk"
+  },
+  {
+    "CPF": "717.038.854-57",
+    "link": "https://drive.google.com/file/d/1FAeJW5fYSTybeVZi7kc3xnmVjGKYEWy-/view?usp=drivesdk"
+  },
+  {
+    "CPF": "186.439.414-50",
+    "link": "https://drive.google.com/file/d/1g57uFu0DP9_EN7195BaH1E3O9XW3noRK/view?usp=drivesdk"
+  },
+  {
+    "CPF": "705.008.544-83",
+    "link": "https://drive.google.com/file/d/1cxMAt_F2Quj85bqgD93dl7-CT0Vp8HIX/view?usp=drivesdk"
+  },
+  {
+    "CPF": "169.483.804-84",
+    "link": "https://drive.google.com/file/d/1y5suTrlyrKgklD9GMwmpHut066mjmwG7/view?usp=drivesdk"
+  },
+  {
+    "CPF": "168.135.364-43",
+    "link": "https://drive.google.com/file/d/1Le00Fr39At50Ca22Et8PRlk5zUL1nlcL/view?usp=drivesdk"
+  },
+  {
+    "CPF": "716.673.014-54",
+    "link": "https://drive.google.com/file/d/1R1GctygBVH5UcjumsitVGeeFjKL_IHAw/view?usp=drivesdk"
+  },
+  {
+    "CPF": "101.736.224-61",
+    "link": "https://drive.google.com/file/d/1dq3T75gVAs-AM4zww2vmwpQf59F9tsB1/view?usp=drivesdk"
+  },
+  {
+    "CPF": "720.273.344-75",
+    "link": "https://drive.google.com/file/d/1hHzeyFOrWOc8MhxTZ3u5DdNwlOWJqCmS/view?usp=drivesdk"
+  },
+  {
+    "CPF": "165.169.704-32",
+    "link": "https://drive.google.com/file/d/1jZt1j2pXN_7HA-ucfNj-Ddn1h1p5ti90/view?usp=drivesdk"
+  },
+  {
+    "CPF": "174.026.734-64",
+    "link": "https://drive.google.com/file/d/1uqwkyMQAFcJSF4iTLLZHn0rEFesr7O5I/view?usp=drivesdk"
+  },
+  {
+    "CPF": "000.463.584-12",
+    "link": "https://drive.google.com/file/d/1sBb4FkSUfYa1QnCiOXXC9kc8NIuE7Ohl/view?usp=drivesdk"
+  },
+  {
+    "CPF": "717.945.994-10",
+    "link": "https://drive.google.com/file/d/1UqgxvmwC2tk1z-kFNL8vddzS9eo5OFsJ/view?usp=drivesdk"
+  },
+  {
+    "CPF": "720.021.854-50",
+    "link": "https://drive.google.com/file/d/18Pks28BceBKNquZ2ja7YYYEG4k4U_6WC/view?usp=drivesdk"
+  },
+  {
+    "CPF": "156.094.744-69",
+    "link": "https://drive.google.com/file/d/1RBDQN469q_J41bxCKElHEBr6pPZRarOU/view?usp=drivesdk"
+  },
+  {
+    "CPF": "109.057.854-79",
+    "link": "https://drive.google.com/file/d/1c1VdQBuONUHI96nSUZDqbTokcI4NsMdq/view?usp=drivesdk"
+  },
+  {
+    "CPF": "171.498.034-07",
+    "link": "https://drive.google.com/file/d/1aD2Inlg2mgrKGfl5_5HrClGpBcDNQZ2H/view?usp=drivesdk"
+  },
+  {
+    "CPF": "174.031.324-08",
+    "link": "https://drive.google.com/file/d/1HcGAs5L3QhVepvqu3h4QcorqK_V78dQp/view?usp=drivesdk"
+  },
+  {
+    "CPF": "717.819.204-60",
+    "link": "https://drive.google.com/file/d/1h5xpvMQ8Xi2vz5-YcmGkAGlRnIUOdFKG/view?usp=drivesdk"
+  },
+  {
+    "CPF": "709.795.044-73",
+    "link": "https://drive.google.com/file/d/1bIXbUfnkYbI9FBAc1mqmwUKN54ydHT7d/view?usp=drivesdk"
+  },
+  {
+    "CPF": "154.171.554-38",
+    "link": "https://drive.google.com/file/d/1wtafC_8mC3nt-Bin7tJmOblFyzTpxgF7/view?usp=drivesdk"
+  },
+  {
+    "CPF": "179.928.734-32",
+    "link": "https://drive.google.com/file/d/1Dm0bT0Px7hIvO2nfsf2BxSMz-Pab3gY2/view?usp=drivesdk"
+  },
+  {
+    "CPF": "170.752.914-08",
+    "link": "https://drive.google.com/file/d/1fVx-yCfECh6L0ALAKAPVV1ujofuycBCF/view?usp=drivesdk"
+  },
+  {
+    "CPF": "156.539.494-18",
+    "link": "https://drive.google.com/file/d/1-zw2QuW1H4N9eigijiSBOVxv03ZAUe9p/view?usp=drivesdk"
+  },
+  {
+    "CPF": "720.141.604-90",
+    "link": "https://drive.google.com/file/d/1WnRucNaD0He5EXSc3NL-udf_oEj7AXv0/view?usp=drivesdk"
+  },
+  {
+    "CPF": "158.988.174-50",
+    "link": "https://drive.google.com/file/d/1CC1dHBvvfKIpF8sL3YNJT1g9RLaoXAew/view?usp=drivesdk"
+  },
+  {
+    "CPF": "122.434.534-79",
+    "link": "https://drive.google.com/file/d/1yKDpgnvYpK_sfmSDChNTofa5F6o2DYwB/view?usp=drivesdk"
+  },
+  {
+    "CPF": "156.500.014-56",
+    "link": "https://drive.google.com/file/d/1a0-z74zO5L2xdIKbet4idOhwrMt8neZb/view?usp=drivesdk"
+  },
+  {
+    "CPF": "718.609.194-64",
+    "link": "https://drive.google.com/file/d/1gTm7j3q8Wg3txjTEkd-GUiPzfU_jLnkX/view?usp=drivesdk"
+  },
+  {
+    "CPF": "718.866.534-61",
+    "link": "https://drive.google.com/file/d/1qBJhgFtR4nEUhUMInM9DX7CW5aN3ncYx/view?usp=drivesdk"
+  },
+  {
+    "CPF": "177.588.734-05",
+    "link": "https://drive.google.com/file/d/1nG1ncBBa6Ln9q07TkxZhSPYSjPVkejSR/view?usp=drivesdk"
+  },
+  {
+    "CPF": "154.966.204-06",
+    "link": "https://drive.google.com/file/d/11LfkRbneUI8KQYjsXXCsEjvGRe0WGH84/view?usp=drivesdk"
+  },
+  {
+    "CPF": "164.548.994-97",
+    "link": "https://drive.google.com/file/d/1HHgCNhXkVAebDeXOoJbVqtWyTS9HFXZG/view?usp=drivesdk"
+  },
+  {
+    "CPF": "163.518.624-26",
+    "link": "https://drive.google.com/file/d/1x9r9jiUbeAnPDn4QIQd-M01dZLD0P_-v/view?usp=drivesdk"
+  },
+  {
+    "CPF": "175.316.644-61",
+    "link": "https://drive.google.com/file/d/1V2_puRmr3NwWrzSPhPosdq-59eDwpeXl/view?usp=drivesdk"
+  },
+  {
+    "CPF": "121.824.894-79",
+    "link": "https://drive.google.com/file/d/1WtH7HYRFkUNAXFQEaMMaQekCLRoBdyg4/view?usp=drivesdk"
+  },
+  {
+    "CPF": "103.474.594-80",
+    "link": "https://drive.google.com/file/d/1SR01hML3HogrPzbiqhHFkjLMElzTl5Uw/view?usp=drivesdk"
+  },
+  {
+    "CPF": "709.699.444-03",
+    "link": "https://drive.google.com/file/d/1T8ZmB65a3t0pdq6hNvtWIy8x61BDEGaN/view?usp=drivesdk"
+  },
+  {
+    "CPF": "152.406.404-16",
+    "link": "https://drive.google.com/file/d/1Wz5SXFQj_EBw4zwjYJP_xOdW2TojLJGU/view?usp=drivesdk"
+  },
+  {
+    "CPF": "717.287.544-37",
+    "link": "https://drive.google.com/file/d/1i0Xb_0CrkOJdc2zGxmrbvqeuxmbeFhOP/view?usp=drivesdk"
+  },
+  {
+    "CPF": "154.702.254-02",
+    "link": "https://drive.google.com/file/d/1FDF06Wtfpj7sGV5UtfJvY7udsF1jL2VQ/view?usp=drivesdk"
+  },
+  {
+    "CPF": "125.956.714-13",
+    "link": "https://drive.google.com/file/d/16VOf3rvnVdQQDQ3L36GT0brgHlTF9QgA/view?usp=drivesdk"
+  },
+  {
+    "CPF": "707.369.044-50",
+    "link": "https://drive.google.com/file/d/19Yr2MGt6jW-YFbmj6zm0zHuL_ni9hIk4/view?usp=drivesdk"
+  },
+  {
+    "CPF": "707.358.004-64",
+    "link": "https://drive.google.com/file/d/17mpzogHDYO2TyjmRmlbkrUmMUWEevIF2/view?usp=drivesdk"
+  },
+  {
+    "CPF": "150.062.647-30",
+    "link": "https://drive.google.com/file/d/1DuFGBsuFkgkOErNEYIWrlXs5j2MNA3Ug/view?usp=drivesdk"
+  },
+  {
+    "CPF": "179.223.464-33",
+    "link": "https://drive.google.com/file/d/1Mk7F3-lwstJT7Apflk3q0e0DElL8cL-s/view?usp=drivesdk"
+  },
+  {
+    "CPF": "156.099.134-89",
+    "link": "https://drive.google.com/file/d/11XT6TUgITldbFAtV1rodNRfdxWD0aPUU/view?usp=drivesdk"
+  },
+  {
+    "CPF": "716.775.334-39",
+    "link": "https://drive.google.com/file/d/1HeekkUw2sA-LSMH6nzPAreIg0R4MQQXe/view?usp=drivesdk"
+  },
+  {
+    "CPF": "720.358.794-00",
+    "link": "https://drive.google.com/file/d/181xuf9fn_0F5DT3eJW0MnjQZbri7NMSS/view?usp=drivesdk"
+  },
+  {
+    "CPF": "178.673.814-73",
+    "link": "https://drive.google.com/file/d/1tM58zItZBQuc_mniTKygZ2Zb3tofsNN9/view?usp=drivesdk"
+  },
+  {
+    "CPF": "107.996.534-38",
+    "link": "https://drive.google.com/file/d/1hjlEJwD4NRPEqnggx4BaTi88JbLsmFOh/view?usp=drivesdk"
+  },
+  {
+    "CPF": "717.503.344-37",
+    "link": "https://drive.google.com/file/d/1YMoUIxiYFk24Z4uA0Cr8BPBbIPXHH5Me/view?usp=drivesdk"
+  },
+  {
+    "CPF": "173.531.084-01",
+    "link": "https://drive.google.com/file/d/1av24xAVPp5-JB_jVRDGpmLJAm97DU0c1/view?usp=drivesdk"
+  },
+  {
+    "CPF": "626.995.443-61",
+    "link": "https://drive.google.com/file/d/1VxdiK5vzWUKyYynMjFIrUzO6bcYXh-Ud/view?usp=drivesdk"
+  },
+  {
+    "CPF": "113.680.304-16",
+    "link": "https://drive.google.com/file/d/1_xrJSMBQBMWLv0TQbng4zHgnxk798OkM/view?usp=drivesdk"
+  },
+  {
+    "CPF": "156.528.494-10",
+    "link": "https://drive.google.com/file/d/1Tdjm5vQPCm6dc7JaDLdEvj3SpTHiDKZ0/view?usp=drivesdk"
+  },
+  {
+    "CPF": "715.462.954-10",
+    "link": "https://drive.google.com/file/d/16H8YkBjguAlggonnCr9K6VOa6zQ4-D_D/view?usp=drivesdk"
+  },
+  {
+    "CPF": "132.822.604-23",
+    "link": "https://drive.google.com/file/d/1tIg_awduJ3pz7W7iRGgR2t1QQNq0viAZ/view?usp=drivesdk"
+  },
+  {
+    "CPF": "162.148.874-86",
+    "link": "https://drive.google.com/file/d/18hMS6qVR7PYWVl83kUf-bSUYGg-XO7fX/view?usp=drivesdk"
+  },
+  {
+    "CPF": "155.184.814-70",
+    "link": "https://drive.google.com/file/d/1UySVxbhFaOKOMLDxBSsFpT46XmtVf0-m/view?usp=drivesdk"
+  },
+  {
+    "CPF": "176.251.884-85",
+    "link": "https://drive.google.com/file/d/1NHLcKUqIdwvLs2b9AR5A2PXhRxDWSfPD/view?usp=drivesdk"
+  },
+  {
+    "CPF": "169.999.484-61",
+    "link": "https://drive.google.com/file/d/14eLwgCuREV7EpNH7Ug-CetrxwH-yfIJ4/view?usp=drivesdk"
+  },
+  {
+    "CPF": "718.262.814-79",
+    "link": "https://drive.google.com/file/d/1uCMlQgZ1-JGWR9vEdFFcCxPMdGLADsPt/view?usp=drivesdk"
+  },
+  {
+    "CPF": "714.615.094-16",
+    "link": "https://drive.google.com/file/d/1wcetss2ILaOphkIQMcCI6wgQwYW-fRJw/view?usp=drivesdk"
+  },
+  {
+    "CPF": "155.062.644-29",
+    "link": "https://drive.google.com/file/d/18xJst7OHNFjJl8cnEFmogaCHkEV-8rUJ/view?usp=drivesdk"
+  },
+  {
+    "CPF": "130.655.174-93",
+    "link": "https://drive.google.com/file/d/1HJD69qwojPU5IdGfnRoXy7adr0xsCPV7/view?usp=drivesdk"
+  },
+  {
+    "CPF": "159.785.004-79",
+    "link": "https://drive.google.com/file/d/1Vp_mT_47y55wgzciFr6wAhk2aaMCmbrE/view?usp=drivesdk"
+  },
+  {
+    "CPF": "705.622.324-94",
+    "link": "https://drive.google.com/file/d/1pv9d5nGe7QMf4HH3p7hAEKUHToJ4PUTi/view?usp=drivesdk"
+  },
+  {
+    "CPF": "122.443.014-00",
+    "link": "https://drive.google.com/file/d/1hieBeavZ6vL6f5P3QJQ3b_UG63Egw9L8/view?usp=drivesdk"
+  },
+  {
+    "CPF": "164.923.924-69",
+    "link": "https://drive.google.com/file/d/1vv0uBVfKx6YFJ8lSApv8w8VBop0ycSUC/view?usp=drivesdk"
+  },
+  {
+    "CPF": "178.353.314-54",
+    "link": "https://drive.google.com/file/d/1yFn2t6GjaDL6Boh55Y-D5OWTwv6QPre1/view?usp=drivesdk"
+  },
+  {
+    "CPF": "176.058.124-00",
+    "link": "https://drive.google.com/file/d/17-NEcEyyTEf2BHytRXaR04R_DkB_LNWX/view?usp=drivesdk"
+  },
+  {
+    "CPF": "136.248.554-33",
+    "link": "https://drive.google.com/file/d/1hACk598vJycz7HZfWR8ElbwuN6vFcyhI/view?usp=drivesdk"
+  },
+  {
+    "CPF": "705.668.134-40",
+    "link": "https://drive.google.com/file/d/1sx-Olu5g31TnsUVWTqpsFdpZ7WFLg7I8/view?usp=drivesdk"
+  },
+  {
+    "CPF": "718.497.484-03",
+    "link": "https://drive.google.com/file/d/1vYHWwq75VBIdrjI4zKlaNUXYKXg5Lnnp/view?usp=drivesdk"
+  },
+  {
+    "CPF": "177.542.354-98",
+    "link": "https://drive.google.com/file/d/1lpCoi5mdat_yR4zMZf0yW4POsUWKgf41/view?usp=drivesdk"
+  },
+  {
+    "CPF": "153.779.614-39",
+    "link": "https://drive.google.com/file/d/1-JcRyzGtw9SupR-oZ6kgd93BeTjNQTuK/view?usp=drivesdk"
+  },
+  {
+    "CPF": "168.651.504-90",
+    "link": "https://drive.google.com/file/d/1agb5deUUamKNq_3s3rpKsex4y7he8uU7/view?usp=drivesdk"
+  },
+  {
+    "CPF": "126.757.344-97",
+    "link": "https://drive.google.com/file/d/1X_uSf6thUtolYfV4HotNhGXIKNIznQps/view?usp=drivesdk"
+  },
+  {
+    "CPF": "107.466.474-41",
+    "link": "https://drive.google.com/file/d/1FkIDpOi7U_6eRLRdNXVCnb50ZndK9T9s/view?usp=drivesdk"
+  },
+  {
+    "CPF": "163.558.234-25",
+    "link": "https://drive.google.com/file/d/16mWuvHNdqrcab1ECfTMWy_uzGbWg9H7J/view?usp=drivesdk"
+  },
+  {
+    "CPF": "170.471.674-80",
+    "link": "https://drive.google.com/file/d/1xc02ygjan1J-RS4goyiwMwWe61CTulhG/view?usp=drivesdk"
+  },
+  {
+    "CPF": "709.881.934-42",
+    "link": "https://drive.google.com/file/d/1WSwCKjDPTkoXcZALGcu2uN9YJMiTocmH/view?usp=drivesdk"
+  },
+  {
+    "CPF": "704.898.954-84",
+    "link": "https://drive.google.com/file/d/1CnO-kQLpVi0J4avlIVKy154EXoQZOzMz/view?usp=drivesdk"
+  },
+  {
+    "CPF": "184.288.154-02",
+    "link": "https://drive.google.com/file/d/1FWbyeHQc78xTt-Uqugcba6UFe2Mn8cdx/view?usp=drivesdk"
+  },
+  {
+    "CPF": "171.557.454-05",
+    "link": "https://drive.google.com/file/d/12ipMoFq74uUqeTaUpgyKXw-zqipV55Jw/view?usp=drivesdk"
+  },
+  {
+    "CPF": "718.557.684-96",
+    "link": "https://drive.google.com/file/d/1eCIllw8lwK072OKMb2-ioYJ02RxWQgCC/view?usp=drivesdk"
+  },
+  {
+    "CPF": "715.583.014-37",
+    "link": "https://drive.google.com/file/d/146fsMsBod-lKLeqkzO4vIGchdC7_7JJl/view?usp=drivesdk"
+  },
+  {
+    "CPF": "164.089.754-29",
+    "link": "https://drive.google.com/file/d/1Rd_8rnAR8O9ijjERLB1YujEWdhohhTzi/view?usp=drivesdk"
+  },
+  {
+    "CPF": "710.144.564-01",
+    "link": "https://drive.google.com/file/d/1jnaTylKFcZzwkvc_F-mgX24YJLLzFhdZ/view?usp=drivesdk"
+  },
+  {
+    "CPF": "715.611.234-12",
+    "link": "https://drive.google.com/file/d/1xTQjx_-6i-EtgPOF_OFGBmNeXLomoSEU/view?usp=drivesdk"
+  },
+  {
+    "CPF": "708.501.754-61",
+    "link": "https://drive.google.com/file/d/1XuGbqgdKj5AK_6uCls0pPNvVL2dpWNEI/view?usp=drivesdk"
+  },
+  {
+    "CPF": "172.668.934-45",
+    "link": "https://drive.google.com/file/d/1yHgxYLmFnhu8VSxf2aEGeVmK-D817mbS/view?usp=drivesdk"
+  },
+  {
+    "CPF": "182.964.177-82",
+    "link": "https://drive.google.com/file/d/1V44Ks3WB_UKL5XRZR7EZssk38ADxZcoZ/view?usp=drivesdk"
+  },
+  {
+    "CPF": "138.988.584-48",
+    "link": "https://drive.google.com/file/d/19HwUjaLxVuPbGq8F6PrNPXghxZ0W_Cit/view?usp=drivesdk"
+  },
+  {
+    "CPF": "178.737.214-69",
+    "link": "https://drive.google.com/file/d/1tEZUPgFb5gz5_2eS-EYlaO7MfCeIgv3y/view?usp=drivesdk"
+  },
+  {
+    "CPF": "159.416.574-20",
+    "link": "https://drive.google.com/file/d/1Dhsshs9nkxbI9sNgcDAiRs0Z4XcjVgFz/view?usp=drivesdk"
+  },
+  {
+    "CPF": "176.575.234-50",
+    "link": "https://drive.google.com/file/d/1oXlbKosbnQ7eTEGblZ_T0OswceGgHGXz/view?usp=drivesdk"
+  },
+  {
+    "CPF": "157.012.454-03",
+    "link": "https://drive.google.com/file/d/1s7zQGc6NfgSjBbEiarJ3km7SbrQZXOx9/view?usp=drivesdk"
+  },
+  {
+    "CPF": "153.713.144-31",
+    "link": "https://drive.google.com/file/d/1f4asbKZlQSL35V9t4gz7PpqwcfuuWVs3/view?usp=drivesdk"
+  },
+  {
+    "CPF": "181.432.724-00",
+    "link": "https://drive.google.com/file/d/1Xw67CHMrL7BfXOWGYXGZT51WJvwwQiqW/view?usp=drivesdk"
+  },
+  {
+    "CPF": "157.215.424-11",
+    "link": "https://drive.google.com/file/d/15UGFRlFrhUY3xVI7E1hJXxagTPHwoGPc/view?usp=drivesdk"
+  }
+]
+
+</script>
+
+</body>
+</html>
